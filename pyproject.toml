@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compit-inext-api"
+version = "0.1.7"
+description = "Compit Inext API - Python client"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Przemyslaw Grzywa"}
+]
+dependencies = []
+
+[project.urls]
+homepage = "https://github.com/Przemko92/compit-inext-api"
+repository = "https://github.com/Przemko92/compit-inext-api"
+
+[tool.setuptools.package-data]
+"definitions" = ["compit_inext_api/*.json"]
