@@ -1,7 +1,7 @@
 """Module HTTP communication with the Inext Compit api."""
 
 from .device_definitions import DeviceDefinitionsLoader
-from .api import CompitAPI
+from .api import CompitAPI, CannotConnect, InvalidAuth
 from .types.DeviceState import DeviceState, Param, DeviceInstance
 from .types.DeviceDefinitions import DeviceDefinitions, Parameter, ParameterDetails
 from .types.SystemInfo import SystemInfo, Gate, Device
@@ -17,5 +17,7 @@ __all__ = [
     "ParameterDetails", 
     "SystemInfo", 
     "Gate", 
-    "Device"
+    "Device",
+    "InvalidAuth",
+    "CannotConnect"
 ]

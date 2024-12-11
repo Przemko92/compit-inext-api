@@ -37,6 +37,9 @@ class CompitAPI:
                 },
             )
 
+            if response.status == 401:
+                raise InvalidAuth()
+
             if response.status == 422:
                 result = await self.get_result(response, ignore_response_code=True)
                 self.token = result["token"]
@@ -52,13 +55,15 @@ class CompitAPI:
 
                 result = await self.get_result(response)
                 return self.authenticate()
+            elif response.status > 400:
+                return False
 
             result = await self.get_result(response)
             self.token = result["token"]
             return SystemInfo.from_json(result)
         except aiohttp.ClientError as e:
             _LOGGER.error(e)
-            return False
+            raise CannotConnect()
 
     async def get_gates(self):
         """Get the gates from the Compit API."""
@@ -224,3 +229,10 @@ class ApiWrapper:
                 url,
                 exception,
             )
+
+class CannotConnect(Exception):
+    """Error to indicate we cannot connect."""
+
+
+class InvalidAuth(Exception):
+    """Error to indicate there is invalid auth."""
