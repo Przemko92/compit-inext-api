@@ -24,7 +24,7 @@ class CompitAPI:
         self.token = None
         self._api_wrapper = ApiWrapper(session)
 
-    async def authenticate(self) -> SystemInfo | False:
+    async def authenticate(self) -> SystemInfo | None:
         """Authenticate the user."""
         try:
             response = await self._api_wrapper.post(
@@ -54,9 +54,9 @@ class CompitAPI:
                 )
 
                 result = await self.get_result(response)
-                return self.authenticate()
+                return await self.authenticate()
             elif response.status > 400:
-                return False
+                return None
 
             result = await self.get_result(response)
             self.token = result["token"]
@@ -65,7 +65,7 @@ class CompitAPI:
             _LOGGER.error(e)
             raise CannotConnect()
 
-    async def get_gates(self) -> SystemInfo | False:
+    async def get_gates(self) -> SystemInfo | None:
         """Get the gates from the Compit API."""
         try:
             response = await self._api_wrapper.get(f"{API_URL}/gates", {}, self.token)
@@ -73,9 +73,9 @@ class CompitAPI:
             return SystemInfo.from_json(await self.get_result(response))
         except aiohttp.ClientError as e:
             _LOGGER.error(e)
-            return False
+            return None
 
-    async def get_state(self, device_id: int) -> DeviceState | False:
+    async def get_state(self, device_id: int) -> DeviceState | None:
         """Get the state of a device."""
         try:
             response = await self._api_wrapper.get(
@@ -86,7 +86,7 @@ class CompitAPI:
 
         except aiohttp.ClientError as e:
             _LOGGER.error(e)
-            return False
+            return None
 
     async def update_device_parameter(
         self, device_id: int, parameter: str, value: str | float
@@ -114,7 +114,7 @@ class CompitAPI:
 
         except aiohttp.ClientError as e:
             _LOGGER.error(e)
-            return False
+            return None
 
     async def get_result(
         self,
