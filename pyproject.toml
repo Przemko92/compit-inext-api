@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "compit-inext-api"
-version = "0.1.9"
+version = "0.1.12"
 description = "Compit Inext API - Python client"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -17,6 +17,8 @@ dependencies = []
 [project.urls]
 homepage = "https://github.com/Przemko92/compit-inext-api"
 repository = "https://github.com/Przemko92/compit-inext-api"
+issues = "https://github.com/Przemko92/compit-inext-api/issues"
 
 [tool.setuptools.package-data]
 "definitions" = ["compit_inext_api/*.json"]
+"compit_inext_api" = ["py.typed"]

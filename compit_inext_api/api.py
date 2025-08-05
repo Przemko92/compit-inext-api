@@ -24,7 +24,7 @@ class CompitAPI:
         self.token = None
         self._api_wrapper = ApiWrapper(session)
 
-    async def authenticate(self):
+    async def authenticate(self) -> SystemInfo | False:
         """Authenticate the user."""
         try:
             response = await self._api_wrapper.post(
@@ -65,7 +65,7 @@ class CompitAPI:
             _LOGGER.error(e)
             raise CannotConnect()
 
-    async def get_gates(self):
+    async def get_gates(self) -> SystemInfo | False:
         """Get the gates from the Compit API."""
         try:
             response = await self._api_wrapper.get(f"{API_URL}/gates", {}, self.token)
@@ -75,7 +75,7 @@ class CompitAPI:
             _LOGGER.error(e)
             return False
 
-    async def get_state(self, device_id: int):
+    async def get_state(self, device_id: int) -> DeviceState | False:
         """Get the state of a device."""
         try:
             response = await self._api_wrapper.get(
@@ -90,7 +90,7 @@ class CompitAPI:
 
     async def update_device_parameter(
         self, device_id: int, parameter: str, value: str | float
-    ):
+    ) -> Any:
         """Update the parameter of a device.
 
         Args:
