@@ -6,6 +6,8 @@ from typing import Any
 
 import aiohttp
 
+from compit_inext_api.consts import CompitParameter
+
 from .types.DeviceState import DeviceState
 from .types.SystemInfo import SystemInfo
 
@@ -89,13 +91,13 @@ class CompitAPI:
             return None
 
     async def update_device_parameter(
-        self, device_id: int, parameter: str, value: str | float
+        self, device_id: int, parameter: CompitParameter, value: str | float
     ) -> Any:
         """Update the parameter of a device.
 
         Args:
             device_id (int): The ID of the device.
-            parameter (str): The parameter to update.
+            parameter (CompitParameter): The parameter to update.
             value (str | float): The new value of the parameter.
 
         Returns:
