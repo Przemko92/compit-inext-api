@@ -19,5 +19,9 @@ __all__ = [
     "Gate", 
     "Device",
     "InvalidAuth",
-    "CannotConnect"
+    "CannotConnect",
+    "CompitHVACMode",
+    "CompitParameter", 
+    "CompitFanMode",
+    "CompitPresetMode"
 ]
