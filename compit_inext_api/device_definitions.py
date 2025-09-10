@@ -2,9 +2,8 @@ from importlib import resources
 import json
 import logging
 import aiofiles
-from compit_inext_api import Device
 
-from .types.DeviceDefinitions import DeviceDefinitions
+from .types.DeviceDefinitions import DeviceDefinitions, Device
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -35,10 +34,11 @@ class DeviceDefinitionsLoader:
                 return await DeviceDefinitionsLoader.get_device_definitions("en")
             raise ValueError("No definitions found") from None
         
-    async def get_device_definition(self, code: int, device_class: int, lang: str = "en") -> Device:
+    @staticmethod
+    async def get_device_definition(code: int, lang: str = "en") -> Device:
         """Get the device definition for a specific device type."""
-        definitions = await self.get_device_definitions(lang)
+        definitions = await DeviceDefinitionsLoader.get_device_definitions(lang)
         for device in definitions.devices:
-            if device.code == code and device.device_class == device_class:
+            if device.code == code:
                 return device            
-        raise ValueError(f"No definition found for device with code {code} and class {device_class}")
+        raise ValueError(f"No definition found for device with code {code}")
