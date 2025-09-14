@@ -4,10 +4,6 @@ on:
   release:
     types: [published]
   workflow_dispatch:
-  push:
-    branches:
-      - develop
-      - beta
 
 jobs:
   publish:
@@ -26,20 +22,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install build twine
 
-      - name: Configure package for branch
-        run: |
-          if [ "${{ github.ref }}" != "refs/heads/main" ] && [ "${{ github.event_name }}" != "release" ]; then
-            # For non-main branches, use beta package name
-            sed -i 's/name = "compit-inext-api"/name = "compit-inext-api-beta"/' pyproject.toml
-            
-            # Add development version suffix
-            BRANCH_NAME=${GITHUB_REF#refs/heads/}
-            COMMIT_SHA=${GITHUB_SHA:0:7}
-            CURRENT_VERSION=$(grep 'version = ' pyproject.toml | sed 's/.*version = "\(.*\)".*/\1/')
-            DEV_VERSION="${CURRENT_VERSION}.dev${GITHUB_RUN_NUMBER}+${COMMIT_SHA}"
-            sed -i "s/version = \".*\"/version = \"${DEV_VERSION}\"/" pyproject.toml
-          fi
-
       - name: Build package
         run: python -m build
 
@@ -49,5 +31,5 @@ jobs:
       - name: Publish to PyPI
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ github.ref == 'refs/heads/main' || github.event_name == 'release' && secrets.PYPI_API_TOKEN || secrets.PYPI_BETA_API_TOKEN }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: twine upload dist/*
