@@ -57,7 +57,7 @@ class CompitAPI:
 
                 result = await self.get_result(response)
                 return await self.authenticate()
-            elif response.status > 400:
+            elif response.status >= 400:
                 return None
 
             result = await self.get_result(response)
@@ -107,7 +107,7 @@ class CompitAPI:
         try:
             _LOGGER.info("Set %s to %s for device %s", parameter, value, device_id)
 
-            data = {"values": [{"code": parameter, "value": value}]}
+            data = {"values": [{"code": parameter.value, "value": value}]}
 
             response = await self._api_wrapper.put(
                 f"{API_URL}/devices/{device_id}/params", data=data, auth=self.token

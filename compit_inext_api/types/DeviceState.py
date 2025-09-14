@@ -67,6 +67,33 @@ class DeviceState:
             None,
         )
 
+    def set_parameter_value(self, param: str | Parameter, value: Any) -> bool:
+        """Set the value of a parameter by its code or parameter object.
+
+        Args:
+            param (str | Parameter): The code or parameter object.
+            value (Any): The new value of the parameter.
+        """
+        if isinstance(param, str):
+            parameter = next(
+                (item for item in self.params if item and item.code == param), None
+            )
+            if parameter:
+                parameter.value = value
+            return parameter is not None
+        else:
+            parameter = next(
+                (
+                    item
+                    for item in self.params
+                    if item and item.code == param.parameter_code
+                ),
+                None,
+            )
+            if parameter:
+                parameter.value = value
+            return parameter is not None
+
     @classmethod
     def from_json(cls, data: dict):
         """Create a DeviceState object from JSON data."""
