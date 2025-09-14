@@ -28,10 +28,10 @@ class CompitApiConnector:
         for gates in self.systemInfo.gates:
             for device in gates.devices:
                 try:
-                    self.devices[device.type] = DeviceInstance(await DeviceDefinitionsLoader.get_device_definition(device.type, lang)) 
+                    self.devices[device.id] = DeviceInstance(await DeviceDefinitionsLoader.get_device_definition(device.type, lang)) 
                     state = await self.api.get_state(device.id)
                     if state and isinstance(state, DeviceState):
-                        self.devices[device.type].state = state
+                        self.devices[device.id].state = state
                     else:
                         _LOGGER.error("Failed to get state for device %s", device.id)
                 except ValueError:
