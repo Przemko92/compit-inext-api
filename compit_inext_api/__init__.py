@@ -5,6 +5,8 @@ from .api import CompitAPI, CannotConnect, InvalidAuth
 from .types.DeviceState import DeviceState, Param, DeviceInstance
 from .types.DeviceDefinitions import DeviceDefinitions, Parameter, ParameterDetails
 from .types.SystemInfo import SystemInfo, Gate, Device
+from .consts import CompitHVACMode, CompitParameter, CompitFanMode, CompitPresetMode
+from .connector import CompitApiConnector
 
 __all__ = [
     "DeviceDefinitionsLoader", 
@@ -23,5 +25,6 @@ __all__ = [
     "CompitHVACMode",
     "CompitParameter", 
     "CompitFanMode",
-    "CompitPresetMode"
+    "CompitPresetMode",
+    "CompitApiConnector"
 ]
