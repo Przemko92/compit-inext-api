@@ -70,18 +70,18 @@ class CompitApiConnector:
         else:
             _LOGGER.error("Failed to get state for device %s", device_id)
 
-    def get_device_parameter(self, device_id: int, parameter: CompitParameter) -> Param | None:
+    def get_device_parameter(self, device_id: int, parameter: str | CompitParameter) -> Param | None:
         device = self.get_device(device_id)
         if device:
-            return device.state.get_parameter_value(parameter.value)
+            return device.state.get_parameter_value(parameter if isinstance(parameter, str) else parameter.value)
         return None
 
-    async def set_device_parameter(self, device_id: int, parameter: CompitParameter, value: str | float) -> bool:
+    async def set_device_parameter(self, device_id: int, parameter: str | CompitParameter, value: str | float) -> bool:
         result = await self.api.update_device_parameter(device_id, parameter, value)
         if result:
             device = self.get_device(device_id)
             if device:
-                device.state.set_parameter_value(parameter.value, value)
+                device.state.set_parameter_value(parameter if isinstance(parameter, str) else parameter.value, value)
         return result
 
         

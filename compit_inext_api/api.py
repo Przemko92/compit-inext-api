@@ -91,7 +91,7 @@ class CompitAPI:
             return None
 
     async def update_device_parameter(
-        self, device_id: int, parameter: CompitParameter, value: str | float
+        self, device_id: int, parameter: CompitParameter | str, value: str | float
     ) -> Any:
         """Update the parameter of a device.
 
@@ -107,7 +107,7 @@ class CompitAPI:
         try:
             _LOGGER.info("Set %s to %s for device %s", parameter, value, device_id)
 
-            data = {"values": [{"code": parameter.value, "value": value}]}
+            data = {"values": [{"code": parameter.value if isinstance(parameter, CompitParameter) else parameter, "value": value}]}
 
             response = await self._api_wrapper.put(
                 f"{API_URL}/devices/{device_id}/params", data=data, auth=self.token
