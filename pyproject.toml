@@ -12,7 +12,10 @@ license = {text = "Apache-2.0"}
 authors = [
     {name = "Przemyslaw Grzywa"}
 ]
-dependencies = []
+dependencies = [
+    "aiofiles",
+    "aiohttp",
+]
 
 [project.urls]
 homepage = "https://github.com/Przemko92/compit-inext-api"
