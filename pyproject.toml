@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "compit-inext-api-beta"
-version = "0.2.1"
+version = "0.4.0"
 description = "Compit Inext API - Python client"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -12,7 +12,10 @@ license = {text = "Apache-2.0"}
 authors = [
     {name = "Przemyslaw Grzywa"}
 ]
-dependencies = []
+dependencies = [
+    "aiofiles",
+    "aiohttp",
+]
 
 [project.urls]
 homepage = "https://github.com/Przemko92/compit-inext-api"

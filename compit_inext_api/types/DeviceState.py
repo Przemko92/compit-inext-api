@@ -121,7 +121,17 @@ class DeviceState:
 class DeviceInstance:
     """Class representing a device instance."""
 
-    def __init__(self, definition: Device) -> None:
+    def __init__(self, label: str, definition: Device) -> None:
         """Initialize the DeviceInstance object."""
+        self.label = label
         self.definition = definition
         self.state: DeviceState
+
+class GateInstance:
+    """Class representing a gate instance."""
+
+    def __init__(self, id: int, label: str) -> None:
+        """Initialize the GateInstance object."""
+        self.id = id
+        self.label = label
+        self.devices: dict[int, DeviceInstance] = {}

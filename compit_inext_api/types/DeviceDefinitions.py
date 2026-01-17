@@ -32,12 +32,13 @@ class Parameter:
         MinValue: float | None = None,
         MaxValue: float | None = None,
         Unit: str | None = None,
+        Type: str | None = None,
     ) -> None:
         """Initialize the DeviceDefinitions class."""
 
         self.parameter_code = ParameterCode
         self.label = Label
-        self.readWrite = ReadWrite
+        self.ReadOnly = ReadWrite == "R"
         self.details = (
             [ParameterDetails(**detail) if Details else None for detail in Details]
             if Details
@@ -46,6 +47,7 @@ class Parameter:
         self.min_value = MinValue
         self.max_value = MaxValue
         self.unit = Unit
+        self.type = Type
 
 
 class Device:
@@ -74,6 +76,7 @@ class Device:
         self.code = code
         self.device_class = device_class
         self.id = id
+        self.type = type
 
     @classmethod
     def from_json(cls, data: dict[str, Any]):
