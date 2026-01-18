@@ -121,7 +121,7 @@ class DeviceState:
 class DeviceInstance:
     """Class representing a device instance."""
 
-    def __init__(self, label: str, definition: Device | None) -> None:
+    def __init__(self, label: str, definition: Device) -> None:
         """Initialize the DeviceInstance object."""
         self.label = label
         self.definition = definition
