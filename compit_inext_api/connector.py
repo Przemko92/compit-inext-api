@@ -91,7 +91,7 @@ class CompitApiConnector:
             
         return None        
 
-    def get_device_parameter(self, device_id: int, parameter: str | CompitParameter) -> Param | str | None:
+    def get_device_parameter(self, device_id: int, parameter: str | CompitParameter) -> Param | None:
         device = self.get_device(device_id)
         if not device:
             return None
