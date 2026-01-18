@@ -6,7 +6,7 @@ PARAMS = {
         "auto": 1,
         "on": 2,
     },
-    CompitParameter.TRYBAERO2: {
+    CompitParameter.ADDITIONAL_VENTILATION_ZONE: {
         "gear_0": 0,
         "gear_1": 1,
         "gear_2": 2,
@@ -226,7 +226,7 @@ PARAMS = {
         "auto": 2,
         "eco": 3,
     },
-    CompitParameter.HEATING_SOURCE_OF_CORRECTION_ZONE: {
+    CompitParameter.HEATING_SOURCE_OF_CORRECTION: {
         "no_corrections": 1,
         "schedule": 2,
         "thermostat": 3,
@@ -286,7 +286,7 @@ PARAMS = {
         "constant": 1,
         "schedule": 2,
     },
-    CompitParameter.BIOMAX775_HEATING_SOURCE_OF_CORRECTION_ZONE: {
+    CompitParameter.BIOMAX_HEATING_SOURCE_OF_CORRECTION: {
         "disabled": 0,
         "no_corrections": 1,
         "schedule": 2,
@@ -297,7 +297,7 @@ PARAMS = {
         "nano_nr_4": 7,
         "nano_nr_5": 8,
     },
-    CompitParameter.BIOMAX775_MIXER_MODE_ZONE_1: {
+    CompitParameter.BIOMAX_MIXER_MODE_ZONE_1: {
         "disabled": 0,
         "without_thermostat": 1,
         "no_corrections": 1,
@@ -309,7 +309,7 @@ PARAMS = {
         "nano_nr_4": 7,
         "nano_nr_5": 8,
     },
-    CompitParameter.BIOMAX775_MIXER_MODE_ZONE_2: {
+    CompitParameter.BIOMAX_MIXER_MODE_ZONE_2: {
         "disabled": 0,
         "without_thermostat": 1,
         "no_corrections": 1,
@@ -321,22 +321,22 @@ PARAMS = {
         "nano_nr_4": 7,
         "nano_nr_5": 8,
     },
-    CompitParameter.BIOMAX775_DHW_MODE: {
+    CompitParameter.BIOMAX_DHW_MODE: {
         "disabled": 0,
         "constant": 1,
         "schedule": 2,
     },
-    CompitParameter.BIOMAX775_DHW_CIRCULATION_MODE: {
+    CompitParameter.BIOMAX_DHW_CIRCULATION_MODE: {
         "disabled": 0,
         "constant": 1,
         "schedule": 2,
     },
-    CompitParameter.BIOMAX775_CIRCULATION_MODE: {
+    CompitParameter.BIOMAX_DHW_CIRCULATION_MODE: {
         "disabled": 0,
         "constant": 1,
         "schedule": 2,
     },
-    CompitParameter.R350_HEATING_SOURCE_OF_CORRECTION_ZONE: {
+    CompitParameter.R350_HEATING_SOURCE_OF_CORRECTION: {
         "no_corrections": 1,
         "schedule": 2,
         "thermostat": 3,
