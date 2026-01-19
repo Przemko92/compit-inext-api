@@ -4,7 +4,8 @@ import logging
 from compit_inext_api.api import CompitAPI
 from compit_inext_api.consts import CompitParameter
 from compit_inext_api.device_definitions import DeviceDefinitionsLoader
-from compit_inext_api.types.DeviceState import DeviceInstance, DeviceState, GateInstance, Param
+from compit_inext_api.params_dictionary import PARAMS
+from compit_inext_api.types.DeviceState import DeviceInstance, GateInstance, Param
 
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
@@ -17,7 +18,7 @@ class CompitApiConnector:
 
     @property
     def all_devices(self) -> dict[int, DeviceInstance]:
-        devices = {}
+        devices: dict[int, DeviceInstance] = {}
         for gate in self.gates.values():
             devices.update(gate.devices)
         return devices
@@ -31,7 +32,7 @@ class CompitApiConnector:
                 return gate.devices[device_id]
         return None
 
-    async def init(self, email: str, password: str, lang: str = "en") -> bool:
+    async def init(self, email: str, password: str, lang: str | None = None) -> bool:
         self.api = CompitAPI(email, password, self.session)
         self.systemInfo = await self.api.authenticate()
         if self.systemInfo is None:
@@ -42,7 +43,13 @@ class CompitApiConnector:
             self.gates[gates.id] = GateInstance(gates.id, gates.label)
             for device in gates.devices:
                 try:
-                    self.gates[gates.id].devices[device.id] = DeviceInstance(device.label, await DeviceDefinitionsLoader.get_device_definition(device.type, lang))
+                    self.gates[gates.id].devices[device.id] = DeviceInstance(
+                        device.label,
+                        await DeviceDefinitionsLoader.get_device_definition(
+                            device.type,
+                            lang=lang,
+                        ),
+                    )
                     state = await self.api.get_state(device.id)
                     if state:
                         self.gates[gates.id].devices[device.id].state = state

@@ -1,7 +1,9 @@
 from importlib import resources
 import json
 import logging
-import aiofiles
+import aiofiles  # type: ignore
+
+from compit_inext_api.consts import CompitDevice
 
 from .types.DeviceDefinitions import DeviceDefinitions, Device
 
@@ -22,7 +24,7 @@ class DeviceDefinitionsLoader:
 
         config_path = resources.files('compit_inext_api.definitions').joinpath(file_name)
         try:        
-            async with aiofiles.open(config_path, encoding="utf-8", mode='r') as file:
+            async with aiofiles.open(str(config_path), encoding="utf-8", mode='r') as file:
                 content = await file.read()
                 definitions = DeviceDefinitions.from_json(json.loads(content))
                 DeviceDefinitionsLoader.cache[lang] = definitions
@@ -35,8 +37,19 @@ class DeviceDefinitionsLoader:
             raise ValueError("No definitions found") from None
         
     @staticmethod
-    async def get_device_definition(code: int, lang: str = "en") -> Device:
+    async def get_device_definition(code: int, lang: str | None = None) -> Device:
         """Get the device definition for a specific device type."""
+        if not lang:
+            device = CompitDevice(code)
+            return Device(
+                name=device.label,
+                parameters=[],
+                code=int(device.value),
+                device_class=device.device_class,
+                id=None,
+            )
+
+
         definitions = await DeviceDefinitionsLoader.get_device_definitions(lang)
         for device in definitions.devices:
             if device.code == code:

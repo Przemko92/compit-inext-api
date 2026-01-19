@@ -19,7 +19,7 @@ API_URL = "https://inext.compit.pl/mobile/v2/compit"
 class CompitAPI:
     """API client for Compit."""
 
-    def __init__(self, email, password, session: aiohttp.ClientSession) -> None:
+    def __init__(self, email: str, password: str, session: aiohttp.ClientSession) -> None:
         """Initialize the CompitAPI class."""
         self.email = email
         self.password = password
@@ -107,7 +107,7 @@ class CompitAPI:
         try:
             _LOGGER.info("Set %s to %s for device %s", parameter, value, device_id)
 
-            data = {"values": [{"code": parameter.value if isinstance(parameter, CompitParameter) else parameter, "value": value}]}
+            data: dict[str, Any] = {"values": [{"code": parameter.value if isinstance(parameter, CompitParameter) else parameter, "value": value}]}
 
             response = await self._api_wrapper.put(
                 f"{API_URL}/devices/{device_id}/params", data=data, auth=self.token
@@ -157,7 +157,7 @@ class ApiWrapper:
         self._session = session
 
     async def get(
-        self, url: str, headers: dict | None = None, auth: Any = None
+        self, url: str, headers: dict[str, Any] | None = None, auth: Any = None
     ) -> aiohttp.ClientResponse:
         """Run http GET method."""
         if headers is None:
@@ -171,8 +171,8 @@ class ApiWrapper:
     async def post(
         self,
         url: str,
-        data: dict | None = None,
-        headers: dict | None = None,
+        data: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
         auth: Any = None,
     ) -> aiohttp.ClientResponse:
         """Run http POST method."""
@@ -189,8 +189,8 @@ class ApiWrapper:
     async def put(
         self,
         url: str,
-        data: dict | None = None,
-        headers: dict | None = None,
+        data: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
         auth: Any = None,
     ) -> aiohttp.ClientResponse:
         """Run http PUT method."""
@@ -206,8 +206,8 @@ class ApiWrapper:
         self,
         method: str,
         url: str,
-        data: dict | None = None,
-        headers: dict | None = None,
+        data: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
         auth: Any = None,
     ) -> Any:
         """Get information from the API."""

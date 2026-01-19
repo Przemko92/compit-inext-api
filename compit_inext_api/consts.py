@@ -92,3 +92,54 @@ class CompitPresetMode(Enum):
     HOLIDAY = 1
     MANUAL = 2
     AWAY = 3
+
+class CompitDevice(Enum):
+    """Enum for Compit devices.
+
+    The enum value is the device `Code`, so you can look up a device by code:
+    `CompitDevice(223) -> CompitDevice.NANO_COLOR_2`.
+
+    Each member also exposes:
+    - `label`: original device name
+    - `device_class`: device class id
+    """
+
+    label: str
+    device_class: int
+
+    def __new__(cls, label: str, code: int, device_class: int):
+        obj = object.__new__(cls)
+        obj._value_ = code
+        obj.label = label
+        obj.device_class = device_class
+        return obj
+
+    AF_1 = ("AF-1", 226, 48)
+    BIOMAX742_2 = ("BioMax742", 36, 15)
+    BIOMAX742 = ("BioMax742", 212, 15)
+    BIOMAX772 = ("BioMax772", 75, 15)
+    BIOMAX775 = ("BioMax775", 201, 15)
+    BWC310 = ("BWC310", 14, 69)
+    COMBO = ("COMBO", 227, 49)
+    COMBO_PRO = ("COMBO PRO", 229, 37)
+    EL750 = ("EL750", 210, 29)
+    L2 = ("L2", 17, 12)
+    NANO_COLOR = ("Nano Color", 12, 10)
+    NANO_COLOR_2 = ("Nano Color 2", 223, 10)
+    NANO_ONE = ("Nano One", 7, 10)
+    R_900 = ("R 900", 224, 47)
+    R350CWU = ("R350.CWU", 53, 36)
+    R350M = ("R350.M", 221, 14)
+    R350_T3 = ("R350 T3", 5, 14)
+    R470 = ("r470", 34, 16)
+    R480 = ("R480", 215, 43)
+    R490 = ("r490", 92, 33)
+    R770RS_R771RS = ("R770RS / R771RS", 91, 25)
+    R810 = ("R810", 3, 14)
+    R810_1 = ("R810", 222, 34)
+    CO2_SHC = ("SHC", 27, 15)
+    SOLARCOMP_951 = ("SolarComp 951", 44, 18)
+    SOLARCOMP971 = ("SolarComp971", 45, 18)
+    SPM_NANO_COLOR = ("SPM - Nano Color", 225, 27)
+    SPM_NANO_COLOR2 = ("SPM - Nano Color2", 0, 46)
+    SPM_NANO_COLOR2_1 = ("SPM - Nano Color2", 78, 46)
