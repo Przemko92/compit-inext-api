@@ -1,5 +1,8 @@
 """Module contains classes for system information."""  # noqa: INP001
 
+from typing import Any
+
+
 class Device:
     """Class representing a device in the system."""
 
@@ -30,7 +33,7 @@ class SystemInfo:
         self.gates = gates
 
     @classmethod
-    def from_json(cls, data: dict):
+    def from_json(cls, data: dict[str, Any]):
         """Create a SystemInfo instance from JSON data."""
         gates = [
             Gate(

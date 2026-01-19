@@ -18,7 +18,7 @@ class Param:
         value_code: str | None,
         value_label: str | None,
         write: bool,
-        ext_info: dict | None = None,
+        ext_info: dict[str, Any] | None = None,
     ) -> None:
         """Initialize the Param object."""
         self.code = code
@@ -95,7 +95,7 @@ class DeviceState:
             return parameter is not None
 
     @classmethod
-    def from_json(cls, data: dict):
+    def from_json(cls, data: dict[str, Any]):
         """Create a DeviceState object from JSON data."""
         params = [
             Param(
