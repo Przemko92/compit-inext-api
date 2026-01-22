@@ -77,9 +77,7 @@ class CompitApiConnector:
         else:
             _LOGGER.error("Failed to get state for device %s", device_id)
 
-    def get_current_option(self, device_id: int, parameter: str | CompitParameter) -> str | None:
-        if isinstance(parameter, str):
-            parameter = CompitParameter(parameter)
+    def get_current_option(self, device_id: int, parameter: CompitParameter) -> str | None:
         device = self.get_device(device_id)
         if not device:
             return None
@@ -88,6 +86,7 @@ class CompitApiConnector:
         if param is None:
             return None
         
+
         val = device.state.get_parameter_value(parameter.value)
         if val is None:
             return None
@@ -98,15 +97,13 @@ class CompitApiConnector:
             
         return None        
 
-    def get_device_parameter(self, device_id: int, parameter: str | CompitParameter) -> Param | None:
+    def get_device_parameter(self, device_id: int, parameter: CompitParameter) -> Param | None:
         device = self.get_device(device_id)
         if not device:
             return None
-        return device.state.get_parameter_value(parameter if isinstance(parameter, str) else parameter.value)
+        return device.state.get_parameter_value(parameter.value)
 
-    async def select_device_option(self, device_id: int, parameter: str | CompitParameter, value: str) -> bool:
-        if isinstance(parameter, str):
-            parameter = CompitParameter(parameter)
+    async def select_device_option(self, device_id: int, parameter: CompitParameter, value: str) -> bool:
 
         param = PARAMS.get(parameter, None)
         if param is None:
@@ -121,16 +118,16 @@ class CompitApiConnector:
         device = self.get_device(device_id)
         if device is None:
                 return False
-            
-        device.state.set_parameter_value(parameter if isinstance(parameter, str) else parameter.value, val)
+        
+        device.state.set_parameter_value(parameter.value, val)
         return result
 
-    async def set_device_parameter(self, device_id: int, parameter: str | CompitParameter, value: str | float) -> bool:
+    async def set_device_parameter(self, device_id: int, parameter: CompitParameter, value: str | float) -> bool:
         result = await self.api.update_device_parameter(device_id, parameter, value)
         if result:
             device = self.get_device(device_id)
             if device:
-                device.state.set_parameter_value(parameter if isinstance(parameter, str) else parameter.value, value)
+                device.state.set_parameter_value(parameter.value, value)
         return result
 
         
