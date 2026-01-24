@@ -4,7 +4,7 @@ import logging
 from compit_inext_api.api import CompitAPI
 from compit_inext_api.consts import CompitParameter
 from compit_inext_api.device_definitions import DeviceDefinitionsLoader
-from compit_inext_api.params_dictionary import PARAMS
+from compit_inext_api.params_dictionary import PARAMS, PARAM_VALUES, PARAMS_MAP
 from compit_inext_api.types.DeviceState import DeviceInstance, GateInstance, Param
 
 
@@ -25,6 +25,16 @@ class CompitApiConnector:
 
     def __init__(self, session: aiohttp.ClientSession) -> None:
         self.session = session
+
+    def _resolve_parameter_code(self, device_code: int, parameter: CompitParameter) -> str:
+        mapping = PARAMS.get(parameter)
+        if not mapping:
+            return parameter.value
+
+        if device_code in mapping:
+            return mapping[device_code]
+
+        return parameter.value
 
     def get_device(self, device_id: int) -> DeviceInstance | None:
         for gate in self.gates.values():
@@ -81,53 +91,103 @@ class CompitApiConnector:
         device = self.get_device(device_id)
         if not device:
             return None
-                
-        param = PARAMS.get(parameter, None)
-        if param is None:
-            return None
-        
 
-        val = device.state.get_parameter_value(parameter.value)
+        code = self._resolve_parameter_code(device.definition.code, parameter)
+        val = device.state.get_parameter_value(code)
+
         if val is None:
             return None
         
+        param = PARAM_VALUES.get(parameter, None)
+        if param is None:
+            return None
+
         for key, value in param.items():
             if value == val.value:
                 return key
             
-        return None        
+        return None              
+
+    def get_current_value(self, device_id: int, parameter: CompitParameter) -> str | float | None:
+        device = self.get_device(device_id)
+        if not device:
+            return None
+        code = self._resolve_parameter_code(device.definition.code, parameter)
+        param = device.state.get_parameter_value(code)
+        if param is None:
+            return None
+        
+        if param.value_label is None:
+            return param.value
+        
+        parameter_values = PARAM_VALUES.get(parameter, None)
+
+        if parameter_values is None:
+            return param.value
+
+        for key, value in parameter_values.items():
+            if value == param.value:
+                return key
+
+        return param.value
 
     def get_device_parameter(self, device_id: int, parameter: CompitParameter) -> Param | None:
         device = self.get_device(device_id)
         if not device:
             return None
-        return device.state.get_parameter_value(parameter.value)
+        code = self._resolve_parameter_code(device.definition.code, parameter)
+        param = device.state.get_parameter_value(code)
+
+        mapped_values = PARAMS_MAP.get(parameter, None)
+        if mapped_values:
+            map = mapped_values.get(device.definition.code, None)
+            if map is not None and param is not None:
+                reverse_map = {v: k for k, v in map.items()}
+                if param.value in reverse_map:
+                    param.value = reverse_map[param.value]
+
+        if param is None:
+            return None
+
+        return param
 
     async def select_device_option(self, device_id: int, parameter: CompitParameter, value: str) -> bool:
-
-        param = PARAMS.get(parameter, None)
-        if param is None:
+        device = self.get_device(device_id)
+        if device is None:
                 return False
-        val = param.get(value, None)
+                
+        code = self._resolve_parameter_code(device.definition.code, parameter)
+        
+        val = PARAM_VALUES.get(parameter, None)
         if val is None:
                 return False
-        result = await self.api.update_device_parameter(device_id, parameter, val)
+        
+        mapped_value = val.get(value, None)
+        if mapped_value is None:
+                return False
+        
+        result = await self.api.update_device_parameter(device_id, code, mapped_value)
         if result is None:
                 return False
-            
+        device.state.set_parameter_value(code, mapped_value)
+        return result
+
+    async def set_device_parameter(self, device_id: int, parameter: CompitParameter, value: str | float) -> bool:
         device = self.get_device(device_id)
         if device is None:
                 return False
         
-        device.state.set_parameter_value(parameter.value, val)
-        return result
+        code = self._resolve_parameter_code(device.definition.code, parameter)
 
-    async def set_device_parameter(self, device_id: int, parameter: CompitParameter, value: str | float) -> bool:
-        result = await self.api.update_device_parameter(device_id, parameter, value)
+        mapped_values = PARAMS_MAP.get(parameter, None)
+
+        if mapped_values:
+            map = mapped_values.get(device.definition.code, None)
+            if map is not None:
+                value = map[int(value)]
+
+        result = await self.api.update_device_parameter(device_id, code, value)
         if result:
-            device = self.get_device(device_id)
-            if device:
-                device.state.set_parameter_value(parameter.value, value)
-        return result
+            device.state.set_parameter_value(code, value)
 
-        
+        return result

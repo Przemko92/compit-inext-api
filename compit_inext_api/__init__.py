@@ -7,6 +7,7 @@ from .types.DeviceDefinitions import DeviceDefinitions, Parameter, ParameterDeta
 from .types.SystemInfo import SystemInfo, Gate, Device
 from .consts import CompitHVACMode, CompitParameter, CompitFanMode, CompitPresetMode, CompitDevice
 from .connector import CompitApiConnector
+from .params_dictionary import PARAMS, PARAM_VALUES
 
 __all__ = [
     "DeviceDefinitionsLoader", 
@@ -27,5 +28,7 @@ __all__ = [
     "CompitParameter", 
     "CompitFanMode",
     "CompitPresetMode",
-    "CompitApiConnector"
+    "CompitApiConnector",
+    "PARAMS",
+    "PARAM_VALUES",
 ]
