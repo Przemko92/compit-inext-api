@@ -460,6 +460,37 @@ PARAMS = {
         12: "__aerowietrzenie",
         223: "__aerowietrzenie",
     },
+    CompitParameter.HOLIDAY_MODE: {
+        223: "__urlop",
+        12: "__urlop",
+        224: "__urlop",
+        92: "__urlop",
+        215: "__tr_urlop",
+        7: "__modeURLOP",
+    },
+    CompitParameter.DEVICE_ON_OFF: {
+        210: "__startstop",
+    },
+    CompitParameter.FORCE_DHW: {
+        224: "__wym_cwu",
+    },
+    CompitParameter.SUMMER_MODE: {
+        215: "__tryb_instal",
+        201: "__tryblato",
+        36: "__tryblato",
+        75: "__tryblato",
+        5: "__tryblato",
+    },
+    CompitParameter.OUT_OF_HOME_MODE: {
+        223: "__trybpozadomemznano1",
+    },
+    CompitParameter.PARTY_MODE: {
+        215: "__tr_swieto",
+    },
+    CompitParameter.MIXER_MODE: {
+        5: "__pracamieszacza",
+        221: "__tr_pr",
+    },
 }
 
 PARAM_VALUES = {
@@ -662,6 +693,30 @@ PARAM_VALUES = {
         "gear_2": 2,
         "gear_3": 3,
         "airing": 4,
+    },
+    CompitParameter.HOLIDAY_MODE: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.DEVICE_ON_OFF: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.FORCE_DHW: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.SUMMER_MODE: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.OUT_OF_HOME_MODE: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.PARTY_MODE: {
+        "off": 0,
+        "on": 1,
     },
 }
 PARAMS_MAP = {

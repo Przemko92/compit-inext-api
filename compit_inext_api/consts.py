@@ -142,6 +142,14 @@ class CompitParameter(Enum):
     VENTILATION_GEAR_TARGET = "VENTILATION_GEAR_TARGET"
     AIRING_ON_OFF = "AIRING_ON_OFF"
 
+    # OnOff switches
+    HOLIDAY_MODE = "HOLIDAY_MODE"
+    DEVICE_ON_OFF = "DEVICE_ON_OFF"
+    FORCE_DHW = "FORCE_DHW"
+    SUMMER_MODE = "SUMMER_MODE"
+    OUT_OF_HOME_MODE = "OUT_OF_HOME_MODE"
+    PARTY_MODE = "PARTY_MODE"
+
 
 class CompitFanMode(Enum):
     """Enum for available fan modes."""
