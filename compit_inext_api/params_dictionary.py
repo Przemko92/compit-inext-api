@@ -1,53 +1,41 @@
 from .consts import CompitParameter
 
 PARAMS = {
-
     CompitParameter.ACTUAL_BUFFER_TEMP: {
         215: "__rr_t_buf",
         224: "__rr_temp_zmie_bufo",
     },
-
     CompitParameter.ACTUAL_HC1_TEMPERATURE: {
         224: "__rd_t_co1",
     },
-
     CompitParameter.ACTUAL_HC2_TEMPERATURE: {
         224: "__rd_t_co2",
     },
-
     CompitParameter.ACTUAL_HC3_TEMPERATURE: {
         224: "__rd_t_co3",
     },
-
     CompitParameter.ACTUAL_HC4_TEMPERATURE: {
         224: "__rd_t_co4",
     },
-
     CompitParameter.ACTUAL_DHW_TEMP: {
         215: "__rr_t_cwu",
         224: "__rr_temp_zmier_cwu",
     },
-
     CompitParameter.ACTUAL_UPPER_SOURCE_TEMP: {
         224: "__rr_temp_zmie_gz",
     },
-
     CompitParameter.AIRING: {
         223: "__rr_wietrzenie",
     },
-
     CompitParameter.ALARM_CODE: {
         226: "__kod_alarmu",
     },
-
     CompitParameter.BATTERY_CHARGE_STATUS: {
         226: "__rr_ladowanie",
     },
-
     CompitParameter.BATTERY_LEVEL: {
         226: "__rr_naladowanie",
     },
-
     CompitParameter.BOILER_TEMPERATURE: {
         36: "__t_boiler",
         75: "__t_boiler",
@@ -56,49 +44,38 @@ PARAMS = {
         210: "__tkotla",
         212: "__tkotla",
     },
-
     CompitParameter.BUFFER_RETURN_TEMPERATURE: {
         210: "__tpowrotu",
     },
-
     CompitParameter.BUFFER_SET_TEMPERATURE: {
         222: "__bufo_temp_zada",
     },
-
     CompitParameter.CALCULATED_BUFFER_TEMP: {
         224: "__rr_temp_wyli_bufo",
     },
-
     CompitParameter.CALCULATED_DHW_TEMP: {
         224: "__rr_temp_wyli_cwu",
     },
-
     CompitParameter.CALCULATED_HEATING_TEMPERATURE: {
         3: "__tcowyliczona",
         14: "__tcowyliczona",
     },
-
     CompitParameter.CALCULATED_TARGET_TEMPERATURE: {
         5: "__Tzadanawyliczona",
         53: "__tzadwyl",
     },
-
     CompitParameter.CALCULATED_UPPER_SOURCE_TEMP: {
         224: "__rr_temp_wyli_gorn_zrod",
     },
-
     CompitParameter.CHARGING_POWER: {
         226: "__rr_ibat",
     },
-
     CompitParameter.CIRCUIT_TARGET_TEMPERATURE: {
         5: "__tempzadanobiegu",
     },
-
     CompitParameter.CO2_ALERT: {
         78: "__flaga_co2",
     },
-
     CompitParameter.CO2_LEVEL: {
         12: "__rd_co2",
         27: "__rr_co2",
@@ -106,76 +83,60 @@ PARAMS = {
         223: "__rd_co2",
         225: "__rr_co2",
     },
-
     CompitParameter.CO2_PERCENT: {
         78: "__rt_proc_co2",
     },
-
     CompitParameter.COLLECTOR_POWER: {
         44: "__mockolektora",
         45: "__mockol",
         99: "__mockol",
     },
-
     CompitParameter.COLLECTOR_TEMPERATURE: {
         44: "__tkolektora",
         45: "__tkol",
         99: "__tkol",
     },
-
     CompitParameter.CO_PUMP_OFF_DELAY: {
         17: "__opwylpco",
     },
-
     CompitParameter.CO_PUMP_ON_DELAY: {
         17: "__opzalpco",
     },
-
     CompitParameter.CURRENT_TEMPERATURE: {
         7: "__t_pokojowa",
         12: "__tpokojowa",
         223: "__tpokojowa",
     },
-
     CompitParameter.DHW_MEASURED_TEMPERATURE: {
         53: "__tcwumierz",
         215: "__rr_t_cwu",
     },
-
     CompitParameter.DHW_TEMPERATURE: {
         210: "__tcwu",
     },
-
     CompitParameter.DUST_ALERT: {
         78: "__flaga_pyly",
     },
-
     CompitParameter.ENERGY_CONSUMPTION: {
         58: "__eelmwh",
     },
-
     CompitParameter.ENERGY_SGREADY_YESTERDAY: {
         53: "__ensgreadywczoraj",
     },
-
     CompitParameter.ENERGY_TODAY: {
         45: "__edzisiaj",
         99: "__edzisiaj",
     },
-
     CompitParameter.ENERGY_TOTAL: {
         53: "__en_calkowita",
     },
-
     CompitParameter.ENERGY_YESTERDAY: {
         53: "__en_wczoraj",
     },
-
     CompitParameter.FAN_MODE: {
         12: "__trybaero",
         223: "__trybaero",
     },
-
     CompitParameter.FUEL_LEVEL: {
         36: "__fuel",
         75: "__fuel",
@@ -183,60 +144,47 @@ PARAMS = {
         201: "__fuel",
         212: "__poz_paliwa",
     },
-
     CompitParameter.HAS_BATTERY: {
         226: "__rr_jest_bat",
     },
-
     CompitParameter.HAS_EXTERNAL_POWER: {
         226: "__rr_jest230",
     },
-
     CompitParameter.HEATING1_TARGET_TEMPERATURE: {
         224: "__rd_t_zad_co1",
     },
-
     CompitParameter.HEATING2_TARGET_TEMPERATURE: {
         224: "__rd_t_zad_co2",
     },
-
     CompitParameter.HEATING3_TARGET_TEMPERATURE: {
         224: "__rd_t_zad_co3",
     },
-
     CompitParameter.HEATING4_TARGET_TEMPERATURE: {
         224: "__rd_t_zad_co4",
     },
-
     CompitParameter.HUMIDITY: {
         27: "__rr_wilgotnosc",
         78: "__hig",
         225: "__pom_hum",
     },
-
     CompitParameter.HVAC_MODE: {
         7: "__mode_intal",
         12: "__trybpracyinstalacji",
         223: "__trybpracyinstalacji",
     },
-
     CompitParameter.LOWER_SOURCE_TEMPERATURE: {
         92: "__tdz",
     },
-
     CompitParameter.MIXER1_TEMPERATURE: {
         91: "__ramkatempco1",
     },
-
     CompitParameter.MIXER2_TEMPERATURE: {
         91: "__ramkatempco2",
     },
-
     CompitParameter.MIXER_TEMPERATURE: {
         5: "__tmieszacza",
         221: "__rr_t_mie",
     },
-
     CompitParameter.OUTDOOR_TEMPERATURE: {
         3: "__tzewn",
         5: "__t_ext",
@@ -256,23 +204,18 @@ PARAMS = {
         225: "__pom_temp",
         226: "__rr_tzew",
     },
-
     CompitParameter.PK1_FUNCTION: {
         227: "__funkcja_pk1",
     },
-
     CompitParameter.PM1_LEVEL_MEASURED: {
         78: "__rr_pm1",
     },
-
     CompitParameter.PM4_LEVEL_MEASURED: {
         78: "__rr_pm4",
     },
-
     CompitParameter.PM10_LEVEL: {
-        12: "__rd_pm10",        
+        12: "__rd_pm10",
         223: "__rd_pm10",
-      
     },
     CompitParameter.PM10_MEASURED: {
         78: "__rr_pm10",
@@ -291,75 +234,160 @@ PARAMS = {
         12: "__trybpracytermostatu",
         223: "__trybpracytermostatu",
     },
-
     CompitParameter.PROTECTION_TEMPERATURE: {
         221: "__rr_t_ochr",
     },
-
     CompitParameter.PUMP_STATUS: {
         226: "__rr_pompa",
     },
-
     CompitParameter.RETURN_CIRCUIT_TEMPERATURE: {
         3: "__temppowrotu",
         226: "__rr__tpow",
-
     },
-
     CompitParameter.SET_TARGET_TEMPERATURE: {
         7: "__tzadman",
         12: "__tempzadpracareczna",
         223: "__tempzadpracareczna",
     },
-
     CompitParameter.TANK_BOTTOM_T2_TEMPERATURE: {
         44: "__czujzasobt2",
         45: "__t2",
         99: "__t2",
     },
-
     CompitParameter.TANK_T4_TEMPERATURE: {
         44: "__czujnikt4",
     },
-
     CompitParameter.TANK_TOP_T3_TEMPERATURE: {
         44: "__czujzastopt3",
         45: "__t3",
         99: "__t3",
     },
-
     CompitParameter.TARGET_HEATING_TEMPERATURE: {
         3: "__tzadanaco",
         14: "__tzadanaco",
     },
-
     CompitParameter.TARGET_TEMPERATURE: {
         7: "__tzadman",
         12: "__tpokzadana",
         223: "__tpokzadana",
     },
-
     CompitParameter.TEMPERATURE_ALERT: {
         78: "__rr_fl_temp",
     },
-
     CompitParameter.UPPER_SOURCE_TEMPERATURE: {
         92: "__tempgz",
     },
-
     CompitParameter.VENTILATION_ALARM: {
         12: "__rd_alarmwent",
         223: "__rd_alarmwent",
     },
-
     CompitParameter.VENTILATION_GEAR: {
         223: "__rr_biegwen",
     },
-
     CompitParameter.WEATHER_CURVE: {
         221: "__ch_pog",
     },
-
+    CompitParameter.DHW_TARGET_TEMPERATURE: {
+        34: "__tcwuzad",
+        36: "__tzadcwu",
+        44: "__tempzadzassol",
+        45: "__tzadcwu",
+        53: "__temp_zad",
+        75: "__tzadcwu",
+        91: "__zadtempcwu",
+        92: "__cwutempzadpreczna",
+        99: "__tzadcwu",
+        201: "__tzadcwu",
+        210: "__tcwuzadana",
+        212: "__temp_zad_Cwu",
+        215: "__rr_t_zad_cwu",
+        222: "__cwu_temp_zada",
+        224: "__temp_zada_prac_cwu",
+    },
+    CompitParameter.DHW_CURRENT_TEMPERATURE: {
+        34: "__t_cwu",
+        36: "__t_cwu",
+        53: "__tcwuzmierz",
+        75: "__t_cwu",
+        91: "__tcwu",
+        92: "__tempcw",
+        201: "__t_cwu",
+        210: "__tcwu",
+        215: "__rr_t_cwu",
+        224: "__rr_temp_zmier_cwu",
+    },
+    CompitParameter.DHW_ON_OFF: {
+        34: "__dhwmode",
+        36: "__cwupraca",
+        75: "__cwupraca",
+        91: "__trybpracycwu",
+        92: "__trybprcwu",
+        201: "__cwupraca",
+        215: "__tryb_cwu",
+        222: "__tryb_cwu",
+        224: "__tryb_cwu",
+    },
+    CompitParameter.AEROKONFBYPASS: {
+        223: "__aerokonfbypass",
+        12: "__aerokonfbypass",
+    },
+    CompitParameter.DHW_CIRCULATION_MODE: {
+        36: "__cwucyrkpraca",
+        75: "__cwucyrkpraca",
+        201: "__cwucyrkpraca",
+    },
+    CompitParameter.BIOMAX_HEATING_SOURCE_OF_CORRECTION: {
+        36: "__pracakotla",
+    },
+    CompitParameter.BIOMAX_MIXER_MODE_ZONE_1: {
+        36: "__m1praca",
+        75: "__m1praca",
+        201: "__m1praca",
+    },
+    CompitParameter.BIOMAX_MIXER_MODE_ZONE_2: {
+        75: "__m2praca",
+        201: "__m2praca",
+    },
+    CompitParameter.BUFFER_MODE: {
+        215: "__tr_buf",
+    },
+    CompitParameter.HEATING_SOURCE_OF_CORRECTION: {
+        34: "__comode",
+    },
+    CompitParameter.LANGUAGE: {
+        7: "_jezyk",
+        12: "_jezyk",
+        223: "_jezyk",
+    },
+    CompitParameter.NANO_MODE: {
+        7: "__nano_mode",
+    },
+    CompitParameter.WORK_MODE: {
+        92: "__sezprinst",
+    },
+    CompitParameter.OPERATING_MODE: {
+        92: "__trybprcwu",
+    },
+    CompitParameter.R470_OPERATING_MODE: {
+        34: "__mode",
+    },
+    CompitParameter.R480_OPERATING_MODE: {
+        215: "__praca_pc",
+    },
+    CompitParameter.R490_OPERATING_MODE: {
+        92: "__trprpompyciepla",
+    },
+    CompitParameter.R900_OPERATING_MODE: {
+        224: "__tr_pracy_pc",
+    },
+    CompitParameter.SOLAR_COMP_OPERATING_MODE: {
+        44: "__trybpracy",
+        45: "__trybpracy",
+        99: "__trybpracy",
+    },
+    CompitParameter.MIXER_MODE: {
+        5: "__pracamieszacza",
+    },
 }
 
 PARAM_VALUES = {
@@ -452,13 +480,13 @@ PARAM_VALUES = {
         "normal": 1,
         "exceeded": 3,
     },
-    CompitParameter.PM25_LEVEL:{
+    CompitParameter.PM25_LEVEL: {
         "no_sensor": 0,
         "normal": 1,
         "warning": 2,
         "exceeded": 3,
     },
-    CompitParameter.PM10_LEVEL:{
+    CompitParameter.PM10_LEVEL: {
         "no_sensor": 0,
         "normal": 1,
         "warning": 2,
@@ -526,15 +554,36 @@ PARAM_VALUES = {
         "summer": 8,
         "cooling": 9,
         "holiday": 10,
-    }
+    },
+    CompitParameter.R470_OPERATING_MODE: {
+        "disabled": 1,
+        "auto": 2,
+        "eco": 3,
+    },
+    CompitParameter.R480_OPERATING_MODE: {
+        "disabled": 0,
+        "eco": 1,
+        "hybrid": 2,
+    },
+    CompitParameter.R490_OPERATING_MODE: {
+        "disabled": 0,
+        "eco": 1,
+        "hybrid": 2,
+    },
+    CompitParameter.R900_OPERATING_MODE: {
+        "disabled": 0,
+        "eco": 1,
+        "hybrid": 2,
+    },
+    CompitParameter.DHW_ON_OFF: {"off": 0, "on": 1, "schedule": 2},
 }
 PARAMS_MAP = {
-    CompitParameter.PRESET_MODE:{
-         7: {
+    CompitParameter.PRESET_MODE: {
+        7: {
             0: 4,
             1: 5,
             2: 0,
             3: 6,
-         },
+        },
     }
 }

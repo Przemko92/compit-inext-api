@@ -110,6 +110,12 @@ class CompitParameter(Enum):
     PK1_FUNCTION = "PK1_FUNCTION"
     ENERGY_CONSUMPTION = "ENERGY_CONSUMPTION"
 
+    # Water Heater
+    DHW_TARGET_TEMPERATURE = "DHW_TARGET_TEMPERATURE"
+    DHW_CURRENT_TEMPERATURE = "DHW_CURRENT_TEMPERATURE"
+    DHW_OPERATION_MODE = "DHW_OPERATION_MODE"
+    DHW_ON_OFF = "DHW_ON_OFF"
+
 class CompitFanMode(Enum):
     """Enum for available fan modes."""
 
