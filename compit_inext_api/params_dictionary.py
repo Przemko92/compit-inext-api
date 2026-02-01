@@ -48,6 +48,7 @@ PARAMS = {
         210: "__tpowrotu",
     },
     CompitParameter.BUFFER_SET_TEMPERATURE: {
+        212: "__temp_zad_buf",
         222: "__bufo_temp_zada",
     },
     CompitParameter.CALCULATED_BUFFER_TEMP: {
@@ -387,6 +388,65 @@ PARAMS = {
     },
     CompitParameter.MIXER_MODE: {
         5: "__pracamieszacza",
+    },
+    CompitParameter.TARGET_TEMPERATURE_COMFORT: {
+        7: "__tzadkofort",
+        12: "__tempzadkomf",
+        223: "__tempzadkomf",
+    },
+    CompitParameter.TARGET_TEMPERATURE_ECO_WINTER: {
+        12: "__tempzadekozima",
+        223: "__tempzadekozima",
+    },
+    CompitParameter.TARGET_TEMPERATURE_ECO_COOLING: {
+        12: "__tempzadekochlodzenie",
+        223: "__tempzadekochlodzenie",
+    },
+    CompitParameter.TARGET_TEMPERATURE_OUT_OF_HOME: {
+        12: "__tempzadpozadomem",
+        223: "__tempzadpozadomem",
+    },
+    CompitParameter.TARGET_TEMPERATURE_ECO: {
+        7: "__tzadeko",
+    },
+    CompitParameter.TARGET_TEMPERATURE_HOLIDAY: {
+        7: "__tzadurlop",
+    },
+    CompitParameter.TARGET_TEMPERATURE_CONST: {
+        3: "__tzadconst",
+    },
+    CompitParameter.DHW_TARGET_TEMPERATURE_2: {
+        44: "__tempzadzas2cwu",
+    },
+    CompitParameter.HEATER_TARGET_TEMPERATURE: {
+        44: "__tempzadpodgrzprzep",
+    },
+    CompitParameter.HEATING_ELEMENT_TARGET_TEMPERATURE: {
+        44: "__tempzadgrz",
+    },
+    CompitParameter.DHW_FROM_BOILER_TARGET_TEMPERATURE: {
+        44: "__tempzadladcwuzkotla",
+    },
+    CompitParameter.HEATING_TARGET_TEMPERATURE_CONST: {
+        34: "__tcoconst",
+    },
+    CompitParameter.MIXER1_TARGET_TEMPERATURE: {
+        91: "__etco1",
+    },
+    CompitParameter.MIXER2_TARGET_TEMPERATURE: {
+        91: "__etco2",
+    },
+    CompitParameter.BOILER_TARGET_TEMPERATURE_CONST: {
+        36: "__tkozadconst",
+        75: "__tkozadconst",
+        201: "__tkozadconst",
+    },
+    CompitParameter.BOILER_TARGET_TEMPERATURE: {
+        210: "__tkotzad",
+        212: "__temp_zad_kot",
+    },
+    CompitParameter.MIXER_TARGET_TEMPERATURE: {
+        221: "__t_zad_mie",
     },
 }
 
