@@ -448,6 +448,18 @@ PARAMS = {
     CompitParameter.MIXER_TARGET_TEMPERATURE: {
         221: "__t_zad_mie",
     },
+    CompitParameter.VENTILATION_ON_OFF: {
+        12: "__aerowentylacjaon&off",
+        223: "__aerowentylacjaon&off",
+    },
+    CompitParameter.VENTILATION_GEAR_TARGET: {
+        12: "__trybaero2",
+        223: "__trybaero2",
+    },
+    CompitParameter.AIRING_ON_OFF: {
+        12: "__aerowietrzenie",
+        223: "__aerowietrzenie",
+    },
 }
 
 PARAM_VALUES = {
@@ -636,6 +648,21 @@ PARAM_VALUES = {
         "hybrid": 2,
     },
     CompitParameter.DHW_ON_OFF: {"off": 0, "on": 1, "schedule": 2},
+    CompitParameter.VENTILATION_ON_OFF: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.AIRING_ON_OFF: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.VENTILATION_GEAR_TARGET: {
+        "gear_0": 0,
+        "gear_1": 1,
+        "gear_2": 2,
+        "gear_3": 3,
+        "airing": 4,
+    },
 }
 PARAMS_MAP = {
     CompitParameter.PRESET_MODE: {
