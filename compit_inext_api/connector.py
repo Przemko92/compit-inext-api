@@ -1,12 +1,13 @@
-import aiohttp
 import logging
+
+import aiohttp
 
 from compit_inext_api.api import CompitAPI
 from compit_inext_api.consts import CompitParameter
+from compit_inext_api.custom_behaviors import CUSTOM_READ_BEHAVIORS, CUSTOM_WRITE_BEHAVIORS
 from compit_inext_api.device_definitions import DeviceDefinitionsLoader
-from compit_inext_api.params_dictionary import PARAMS, PARAM_VALUES, PARAMS_MAP
-from compit_inext_api.types.DeviceState import DeviceInstance, GateInstance, Param
-
+from compit_inext_api.params_dictionary import PARAM_VALUES, PARAMS, PARAMS_MAP
+from compit_inext_api.types.DeviceState import DeviceInstance, GateInstance
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
@@ -116,6 +117,20 @@ class CompitApiConnector:
         param = device.state.get_parameter_value(code)
         if param is None:
             return None
+
+        mapped_values = PARAMS_MAP.get(parameter, None)
+        if mapped_values:
+            mapped_value = mapped_values.get(device.definition.code, None)
+            if mapped_value is not None:
+                for key, value in mapped_value.items():
+                    if value == param.value:
+                        return key            
+        
+        custom_handler = CUSTOM_READ_BEHAVIORS.get(parameter)
+        if custom_handler:
+            custom_value = custom_handler(self, device_id, device, parameter, code)
+            if custom_value is not None:
+                return custom_value
         
         if param.value_label is None:
             return param.value
@@ -130,26 +145,6 @@ class CompitApiConnector:
                 return key
 
         return param.value
-
-    def get_device_parameter(self, device_id: int, parameter: CompitParameter) -> Param | None:
-        device = self.get_device(device_id)
-        if not device:
-            return None
-        code = self._resolve_parameter_code(device.definition.code, parameter)
-        param = device.state.get_parameter_value(code)
-
-        mapped_values = PARAMS_MAP.get(parameter, None)
-        if mapped_values:
-            map = mapped_values.get(device.definition.code, None)
-            if map is not None and param is not None:
-                reverse_map = {v: k for k, v in map.items()}
-                if param.value in reverse_map:
-                    param.value = reverse_map[param.value]
-
-        if param is None:
-            return None
-
-        return param
 
     async def select_device_option(self, device_id: int, parameter: CompitParameter, value: str) -> bool:
         device = self.get_device(device_id)
@@ -185,6 +180,12 @@ class CompitApiConnector:
             map = mapped_values.get(device.definition.code, None)
             if map is not None:
                 value = map[int(value)]
+
+        custom_handler = CUSTOM_WRITE_BEHAVIORS.get(parameter)
+        if custom_handler:
+            custom_result = await custom_handler(self, device_id, parameter, value)
+            if custom_result is not None:
+                return custom_result
 
         result = await self.api.update_device_parameter(device_id, code, value)
         if result:

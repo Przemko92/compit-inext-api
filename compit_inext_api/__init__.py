@@ -1,13 +1,13 @@
 """Module HTTP communication with the Inext Compit api."""
 
-from .device_definitions import DeviceDefinitionsLoader
-from .api import CompitAPI, CannotConnect, InvalidAuth
-from .types.DeviceState import DeviceState, Param, DeviceInstance
-from .types.DeviceDefinitions import DeviceDefinitions, Parameter, ParameterDetails
-from .types.SystemInfo import SystemInfo, Gate, Device
-from .consts import CompitHVACMode, CompitParameter, CompitFanMode, CompitPresetMode, CompitDevice
+from .api import CannotConnect, CompitAPI, InvalidAuth
 from .connector import CompitApiConnector
-from .params_dictionary import PARAMS, PARAM_VALUES
+from .consts import CompitDevice, CompitFanMode, CompitHVACMode, CompitParameter, CompitPresetMode
+from .device_definitions import DeviceDefinitionsLoader
+from .params_dictionary import PARAM_VALUES, PARAMS
+from .types.DeviceDefinitions import DeviceDefinitions, Parameter, ParameterDetails
+from .types.DeviceState import DeviceInstance, DeviceState, Param
+from .types.SystemInfo import Device, Gate, SystemInfo
 
 __all__ = [
     "DeviceDefinitionsLoader", 

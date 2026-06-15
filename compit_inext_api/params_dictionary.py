@@ -25,6 +25,7 @@ PARAMS = {
         224: "__rr_temp_zmie_gz",
     },
     CompitParameter.AIRING: {
+        12: "__rr_wietrzenie",
         223: "__rr_wietrzenie",
     },
     CompitParameter.ALARM_CODE: {
@@ -172,6 +173,7 @@ PARAMS = {
         7: "__mode_intal",
         12: "__trybpracyinstalacji",
         223: "__trybpracyinstalacji",
+        224: "__trybpracyinstalacji",
     },
     CompitParameter.LOWER_SOURCE_TEMPERATURE: {
         92: "__tdz",
@@ -283,6 +285,7 @@ PARAMS = {
         223: "__rd_alarmwent",
     },
     CompitParameter.VENTILATION_GEAR: {
+        12: "__rr_biegwen",
         223: "__rr_biegwen",
     },
     CompitParameter.WEATHER_CURVE: {
@@ -482,6 +485,7 @@ PARAMS = {
         5: "__tryblato",
     },
     CompitParameter.OUT_OF_HOME_MODE: {
+        12: "__trybpozadomemznano1",
         223: "__trybpozadomemznano1",
     },
     CompitParameter.PARTY_MODE: {
@@ -490,6 +494,13 @@ PARAMS = {
     CompitParameter.MIXER_MODE: {
         5: "__pracamieszacza",
         221: "__tr_pr",
+    },
+    CompitParameter.GWC: {
+        12: "__rt_gwc",
+        223: "__rt_gwc",
+    },
+    CompitParameter.MIXER_PUMP_STATUS: {
+        3: "__pompa_mieszacza",
     },
 }
 
@@ -715,6 +726,14 @@ PARAM_VALUES = {
         "on": 1,
     },
     CompitParameter.PARTY_MODE: {
+        "off": 0,
+        "on": 1,
+    },
+    CompitParameter.GWC: {
+        "closed": 0,
+        "open": 1,
+    },
+    CompitParameter.MIXER_PUMP_STATUS: {
         "off": 0,
         "on": 1,
     },

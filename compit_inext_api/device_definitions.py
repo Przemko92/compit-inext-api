@@ -1,11 +1,12 @@
-from importlib import resources
 import json
 import logging
+from importlib import resources
+
 import aiofiles  # type: ignore
 
 from compit_inext_api.consts import CompitDevice
 
-from .types.DeviceDefinitions import DeviceDefinitions, Device
+from .types.DeviceDefinitions import Device, DeviceDefinitions
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
 
