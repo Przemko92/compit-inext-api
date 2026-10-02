@@ -17,6 +17,39 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Release tags are the version that should land on PyPI. The 0.9.2
+      # release was tagged while pyproject.toml still said 0.9.0, which PyPI
+      # already had, so the upload was rejected.
+      - name: Use the release tag as the package version
+        if: github.event_name == 'release'
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python - <<'PY'
+          import os
+          import pathlib
+          import re
+          import sys
+
+          tag = os.environ["RELEASE_TAG"]
+          version = tag[1:] if tag.startswith("v") else tag
+          if re.fullmatch(r"\d+(?:\.\d+)*(?:(?:a|b|rc)\d+)?(?:\.post\d+)?(?:\.dev\d+)?", version) is None:
+              sys.exit(f"Release tag {tag!r} is not a valid package version")
+
+          path = pathlib.Path("pyproject.toml")
+          text = path.read_text()
+          updated, count = re.subn(
+              r'(?m)^version\s*=\s*"[^"]+"',
+              f'version = "{version}"',
+              text,
+              count=1,
+          )
+          if count != 1:
+              sys.exit("Could not update version in pyproject.toml")
+          path.write_text(updated)
+          print(f"Package version set to {version} from release tag {tag}")
+          PY
+
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
@@ -32,4 +65,4 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/*
+        run: twine upload --verbose dist/*
