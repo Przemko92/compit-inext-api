@@ -284,6 +284,10 @@ PARAMS = {
         12: "__rd_alarmwent",
         223: "__rd_alarmwent",
     },
+    CompitParameter.VENTILATION_FILTER: {
+        12: "__rd_filtrwent",
+        223: "__rd_filtrwent",
+    },
     CompitParameter.VENTILATION_GEAR: {
         12: "__rr_biegwen",
         223: "__rr_biegwen",
@@ -614,6 +618,10 @@ PARAM_VALUES = {
         "bot_alarm": 4,
         "damaged_preheater_sensor": 5,
         "ahu_alarm": 6,
+    },
+    CompitParameter.VENTILATION_FILTER: {
+        "clean": 0,
+        "dirty": 1,
     },
     CompitParameter.AIRING: {
         "off": 0,
